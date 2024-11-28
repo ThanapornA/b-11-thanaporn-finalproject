@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICollectable //what player collide will receive points
 {
-    public void Collect();
+    public void Collect(PlayerController player);
 }

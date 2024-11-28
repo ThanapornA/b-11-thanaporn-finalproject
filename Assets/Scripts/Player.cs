@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    /*
-    private void OnTriggerEnter2D( Collider2D collider2D )
+{ /*
+    [ SerializeField ] private string name = "player";
+    public string Name => name;//readOnly property
+
+    private int points = 0;
+    public int Points => points; */
+
+    void Start()
     {
-        if ( collider2D.GameObject.CompareTag("foods") )
-        {
-            Destroy( collider2D.GameObject );
-        }
-    } */
+        
+    }
+
+    void Update()
+    {
+
+    }
 }

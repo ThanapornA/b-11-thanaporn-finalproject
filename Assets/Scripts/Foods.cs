@@ -11,19 +11,39 @@ public abstract class Foods : MonoBehaviour //ABSTRACT Class
 
     protected string _name = "food";
 
+    public bool hasTriggered = false;
+
+    [ SerializeField ] private Collider2D collider; //private Rigidbody2D rb;
     public Transform Trans;
 
-    public void Init( string newName , float newFoodspeed)
+    public void Init( string newName , float newFoodspeed , int pointWillGet )
     {
-        name = newName;
-        foodSpeed = newFoodspeed;
+        _name = newName;
+        //foodSpeed = newFoodspeed;
+        foodPoints = pointWillGet;
     }
 
-    public abstract void Print(); //after foods are collected >> there will be announcement in console
+    public abstract void Print();
 
     public void Update()
     {
-        //each food will have different falling speed up to their points
-        Trans.position += Vector3.down * foodSpeed * Time.deltaTime;
+
+    }
+
+    private void OnTriggerEnter2D (Collider2D other)
+    {
+        if ( other.CompareTag("Player") )
+        {
+            hasTriggered = true;
+            Debug.Log($"-- you ate {_name} --"); //after foods are collected >> there will be announce in console
+            PlayerController player = other.GetComponent<PlayerController>();
+            ICollectable collect = GetComponent<ICollectable>();
+            
+            if ( collect != null && player != null )
+            {
+                collect.Collect(player);
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 }

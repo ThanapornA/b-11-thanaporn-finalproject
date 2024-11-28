@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class Toast : Foods , ICollectable //INHERITANCE
 {
-    [ SerializeField ] private int point;
-    private bool hasTriggered;
-
     public void Start()
     {
-        Init("Toasty" , 3f);
+        Init("Crispy Toast" , 100f , 55 );
         Print();
     }
 
     public override void Print()
     {
-        Debug.Log($"{name} is a food jaa");
+        //Debug.Log($"{FoodPoints} is spawned!"); //info name points + boosts
     }
 
-    public void Collect() //edit**********
+    public void Collect(PlayerController player) //when player collect 
     {
-        /* if ( collide.CompareTag("Player") && hasTriggered )
+        if ( hasTriggered == true ) 
         {
-            hasTriggered = true;
-            Destroy( GameObject );
-        } */
+            player.ClassifyingFood( FoodPoints , 3 ); //20.0f , 5.0f
+        }
     }
 }

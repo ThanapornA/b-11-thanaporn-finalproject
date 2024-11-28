@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [ SerializeField ] public GameObject[] prefabs;
-    [ SerializeField ] public float timeToSpawn = 1f;
+    [ SerializeField ] public float timeToSpawn;// = 1f;
     [ SerializeField ] public float minPosition , maxPosition;
 
     private void Start()
