@@ -4,17 +4,18 @@ using UnityEngine;
 
 public abstract class Foods : MonoBehaviour //ABSTRACT Class
 {
-    [ SerializeField ] private int foodPoints;
+    private int foodPoints;
     public int FoodPoints { get{ return foodPoints; } set{ foodPoints = value; }}
 
-    [ SerializeField ] public float foodSpeed;
+    public float foodSpeed;
 
     protected string _name = "food";
 
     public bool hasTriggered = false;
 
-    [ SerializeField ] private Collider2D collider; //private Rigidbody2D rb;
+    [ SerializeField ] private Collider2D collider;
     public Transform Trans;
+    public Spawner Spawner;
 
     public void Init( string newName , float newFoodspeed , int pointWillGet )
     {
@@ -24,11 +25,6 @@ public abstract class Foods : MonoBehaviour //ABSTRACT Class
     }
 
     public abstract void Print();
-
-    public void Update()
-    {
-
-    }
 
     private void OnTriggerEnter2D (Collider2D other)
     {

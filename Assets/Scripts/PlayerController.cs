@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"you are now {HungyPoints}% hungry!!");
     }
 
-    public void ClassifyingFood( float foodPoints ) //bad food
+    public void ClassifyingFood( float foodPoints , string foodType ) //bad food
     {
         hungyPoints -= foodPoints;
         Debug.Log($"Oh no! you are now {HungyPoints}% hungry...");

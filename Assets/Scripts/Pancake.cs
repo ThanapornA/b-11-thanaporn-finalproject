@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Toast : Foods , ICollectable //INHERITANCE
+public class Pancake : Foods , ICollectable
 {
     public void Start()
     {
-        Init("Crispy Toast" , 100f , 5 );
+        Init("Pancake" , 100f , 10 );
         Print();
     }
 
@@ -19,7 +19,7 @@ public class Toast : Foods , ICollectable //INHERITANCE
     {
         if ( hasTriggered == true ) 
         {
-            player.ClassifyingFood( FoodPoints );
+            player.ClassifyingFood( FoodPoints , 3 ); //20.0f , 5.0f
         }
     }
 }
