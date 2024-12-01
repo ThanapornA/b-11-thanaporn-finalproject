@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     [ SerializeField ] private string name = "player";
     public string Name => name;//readOnly property
 
-    private float hungyPoints = 0f;
-    public float HungyPoints => hungyPoints;
+    private float satietyPoints = 0f;
+    public float SatietyPoints => satietyPoints;
 
     //speed variables
     [ SerializeField ] private float speed; //no this will be veryyyyy slow
@@ -27,14 +29,21 @@ public class PlayerController : MonoBehaviour
     [ SerializeField ] private int jumpPower;
     public bool isJumping;
 
+    //ui
+    [ SerializeField ] SatietyBar SatietyBar;
+    [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower;
+
     void Start()
     {
         Debug.Log($"Hello {Name}! Hey look! let's collect foods until you are full!"); //start text
         originalSpeed = speed;
+        UpdateCurrentSpeed();
+        UpdateCurrentJumpPower();
     }
 
     void Update() //check what player press
     {
+        SatietyBar.UpdateBar( SatietyPoints );
         float horizontalInput = Input.GetAxis("Horizontal"); //put value in float first so we can use in Flip()
         
         rb.AddForce(new Vector2(-dragSpeed, 0), ForceMode2D.Force); //this one is for dragging player to left side
@@ -72,6 +81,7 @@ public class PlayerController : MonoBehaviour
             if ( speedBoostTimer >= speedBoostDuration )
             {
                 speed = originalSpeed;
+                UpdateCurrentSpeed();
                 isSpeedBoostActive = false;
                 Debug.Log("... speed boost ended ...");
             }
@@ -79,10 +89,10 @@ public class PlayerController : MonoBehaviour
     }
 
     //POLYMORPHISM(overload)
-    public void ClassifyingFood( int foodPoints , float speedUp , float duration ) //special food : blueberry milk
+    public void ClassifyingFood( int foodPoints , float speedUp , float duration ) //SPEED special food : blueberry milk
     {
-        hungyPoints += foodPoints;
-        Debug.Log($"you have now {HungyPoints}% hungry!!"); //text update score
+        satietyPoints += foodPoints;
+        Debug.Log($"you have now {SatietyPoints}% full!!"); //text update score
 
         if( !isSpeedBoostActive )
         {
@@ -91,17 +101,19 @@ public class PlayerController : MonoBehaviour
             isSpeedBoostActive = true;
             speedBoostDuration = duration;
             speedBoostTimer = 0.0f;
+            UpdateCurrentSpeed();
         }
     }
 
-    public void ClassifyingFood( int foodPoints , int increaseJump ) //special food : pancake
+    public void ClassifyingFood( int foodPoints , int increaseJump ) //JUMP special food : pancake
     {
-        hungyPoints += foodPoints;
-        Debug.Log($"you are now {HungyPoints}% hungry!!");
+        satietyPoints += foodPoints;
+        Debug.Log($"you are now {SatietyPoints}% hungry!!");
 
         if ( jumpPower <= 15 )
         {
             jumpPower += increaseJump;
+            UpdateCurrentJumpPower();
             Debug.Log($"your jump power is +{increaseJump}.");
         }
         else
@@ -112,14 +124,25 @@ public class PlayerController : MonoBehaviour
     
     public void ClassifyingFood( int foodPoints ) //normal food
     {
-        hungyPoints += foodPoints;
-        Debug.Log($"you are now {HungyPoints}% hungry!!");
+        satietyPoints += foodPoints;
+        Debug.Log($"you are now {SatietyPoints}% hungry!!");
     }
 
     public void ClassifyingFood( float foodPoints , string foodType ) //bad food
     {
-        hungyPoints -= foodPoints;
-        Debug.Log($"Oh no! you are now {HungyPoints}% hungry...");
+        satietyPoints -= foodPoints;
+        Debug.Log($"Oh no! you are now {SatietyPoints}% hungry...");
+    }
+
+    //Texts
+    private void UpdateCurrentSpeed()
+    {
+        currentSpeed.text = $"Speed: {Speed}";
+    }
+
+    private void UpdateCurrentJumpPower()
+    {
+        currentJumpPower.text = $"Jump Power : {jumpPower}";
     }
 }
 
