@@ -6,17 +6,38 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [ SerializeField ] TextMeshProUGUI timerText;
-    float elapsedTime;
+    private float remainingTime = 30.0f;
+    public float RemainingTime => remainingTime; //property
+
+    public int minutes;
+    public int seconds;
+
+    public PlayerController player;
 
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds =  Mathf.FloorToInt(elapsedTime % 60);
+        remainingTime -= Time.deltaTime;
+        minutes = Mathf.FloorToInt(remainingTime / 60);
+        seconds =  Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}" , minutes , seconds);
 
-        /*
-        elapsedTime = Time.deltaTime;
-        timerText.text = elapsedTime.ToString(); */
+        loseCondition();
+        winCondition();
+    }
+    
+    public void loseCondition()
+    {
+        if( minutes == 0.0f && seconds == 0.0f )
+        {
+            timerText.text = "lose";
+        }
+    }
+
+    private void winCondition()
+    {
+        if( player.SatietyPoints >= 100 )
+        {
+            timerText.text = "win";
+        }
     }
 }

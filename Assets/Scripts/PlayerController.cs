@@ -156,6 +156,17 @@ public class PlayerController : MonoBehaviour
             currentJumpPower.text = $"your jump power is max at 15.";
         }
     }
+
+    //game end conditions
+    private void winYAYCondition()
+    {
+
+    }
+    
+    private void loseYAYCondition()
+    {
+        
+    }
 }
 
 

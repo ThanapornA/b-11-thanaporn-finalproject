@@ -472,7 +472,6 @@ GameObject:
   - component: {fileID: 390001266}
   - component: {fileID: 390001265}
   - component: {fileID: 390001267}
-  - component: {fileID: 390001268}
   - component: {fileID: 390001269}
   m_Layer: 0
   m_Name: Player
@@ -588,7 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: player
-  speed: 5
+  speed: 20
   rb: {fileID: 390001265}
   anim: {fileID: 390001269}
   Trans: {fileID: 390001264}
@@ -643,18 +642,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8451853, y: 2.4124758}
   m_EdgeRadius: 0
---- !u!114 &390001268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390001262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc0d69e4492ec14d8c70b3dfa88141d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &390001269
 Animator:
   serializedVersion: 5
@@ -958,10 +945,10 @@ RectTransform:
   - {fileID: 770642552}
   m_Father: {fileID: 1485905762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -237, y: 218.04}
-  m_SizeDelta: {x: 170.9505, y: 17.6195}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.7, y: -35.460007}
+  m_SizeDelta: {x: 170.9505, y: 17.619507}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930520689
 MonoBehaviour:
@@ -1537,8 +1524,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288178944
-  m_fontColor: {r: 0, g: 0.41960788, b: 0.59607846, a: 1}
+    rgba: 4278196223
+  m_fontColor: {r: 1, g: 0.09210526, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1555,15 +1542,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 19
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1621,7 +1608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -32.960022}
+  m_AnchoredPosition: {x: 0, y: -35.460022}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1442279937
@@ -1916,6 +1903,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1344488966}
+  minutes: 0
+  seconds: 0
+  player: {fileID: 390001266}
 --- !u!1 &1761806537
 GameObject:
   m_ObjectHideFlags: 0
