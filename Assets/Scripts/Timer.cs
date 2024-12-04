@@ -25,11 +25,12 @@ public class Timer : MonoBehaviour
         winCondition();
     }
     
+    //game end conditions
     public void loseCondition()
     {
         if( minutes == 0.0f && seconds == 0.0f )
         {
-            timerText.text = "lose";
+            timerText.text = "time's up! you lose";
         }
     }
 
@@ -37,7 +38,7 @@ public class Timer : MonoBehaviour
     {
         if( player.SatietyPoints >= 100 )
         {
-            timerText.text = "win";
+            timerText.text = "you're full! you win";
         }
     }
 }

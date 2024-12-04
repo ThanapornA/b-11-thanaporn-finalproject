@@ -4,13 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
-    [ SerializeField ] private string name = "player";
-    public string Name => name;//readOnly property
-
     private float satietyPoints = 0f;
-    public float SatietyPoints => satietyPoints;
+    public float SatietyPoints => satietyPoints; //readOnly property
 
     //speed variables
     [ SerializeField ] private float speed; //no this will be veryyyyy slow
@@ -28,11 +25,14 @@ public class PlayerController : MonoBehaviour
 
     //jump variables
     [ SerializeField ] private int jumpPower;
-    public bool isJumping;
+    private bool isGrounded;
+    public Transform feetPos;
+    public float checkRadius;
+    public LayerMask whatIsGround;
 
     //ui
     [ SerializeField ] SatietyBar SatietyBar;
-    [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower , triggeredEnemy;
+    [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower;
 
     void Start()
     {
@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
         originalSpeed = speed;
         UpdateCurrentSpeed();
         UpdateCurrentJumpPower();
+
+        Init( "Penguin" , "player" );
     }
 
     void Update() //check what player press
@@ -63,9 +65,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //Jump
-        if ( Input.GetKey(KeyCode.UpArrow)  ) //Jump && isJumping == false
+        isGrounded = Physics2D.OverlapCircle(feetPos.position , checkRadius , whatIsGround); //check if player hits the ground
+        if ( isGrounded == true && Input.GetKey(KeyCode.UpArrow)  )
         {
-            //rb.AddForce(new Vector2(rb.velocity.x , jumpPower));
             rb.velocity = new Vector2( rb.velocity.x , jumpPower );
         }
 
@@ -156,41 +158,4 @@ public class PlayerController : MonoBehaviour
             currentJumpPower.text = $"your jump power is max at 15.";
         }
     }
-
-    //game end conditions
-    private void winYAYCondition()
-    {
-
-    }
-    
-    private void loseYAYCondition()
-    {
-        
-    }
 }
-
-
-
-
-
-
-
-
-
-/*
-    //jump only when collide with floor
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if ( other.gameObject.CompareTag("floor"))
-        {
-            isJumping = false;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if ( other.gameObject.CompareTag("floor"))
-        {
-            isJumping = true;
-        }
-    }*/
