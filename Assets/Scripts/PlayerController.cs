@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool isSpeedBoostActive = false;
 
     [ SerializeField ] private Rigidbody2D rb;
+    [ SerializeField ] private Animator anim;
     public Transform Trans;
     private float dragSpeed = 10.0f;
 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     //ui
     [ SerializeField ] SatietyBar SatietyBar;
-    [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower;
+    [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower , triggeredEnemy;
 
     void Start()
     {
@@ -67,6 +68,9 @@ public class PlayerController : MonoBehaviour
             //rb.AddForce(new Vector2(rb.velocity.x , jumpPower));
             rb.velocity = new Vector2( rb.velocity.x , jumpPower );
         }
+
+        //animator parameter
+        anim.SetBool("Run" , horizontalInput != 0);
 
         UpdateSpeedBoostTimer();
     }
@@ -110,14 +114,17 @@ public class PlayerController : MonoBehaviour
         satietyPoints += foodPoints;
         Debug.Log($"you are now {SatietyPoints}% hungry!!");
 
+        jumpPower += increaseJump;
+
         if ( jumpPower <= 15 )
         {
-            jumpPower += increaseJump;
             UpdateCurrentJumpPower();
             Debug.Log($"your jump power is +{increaseJump}.");
         }
         else
         {
+            jumpPower = 15;
+            UpdateCurrentJumpPower();
             Debug.Log($"your jump power is max at 15.");
         }
     }
@@ -143,9 +150,13 @@ public class PlayerController : MonoBehaviour
     private void UpdateCurrentJumpPower()
     {
         currentJumpPower.text = $"Jump Power : {jumpPower}";
+
+        if ( jumpPower == 15 )
+        {
+            currentJumpPower.text = $"your jump power is max at 15.";
+        }
     }
 }
-
 
 
 
