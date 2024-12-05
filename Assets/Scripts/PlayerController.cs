@@ -34,14 +34,18 @@ public class PlayerController : Character
     [ SerializeField ] SatietyBar SatietyBar;
     [ SerializeField ] TextMeshProUGUI currentSpeed , currentJumpPower;
 
+    void Awake()
+    {
+        Debug.Log($"<color=yellow>Hello! Hey look! let's collect foods until you are full!</color>"); //start text
+    }
+    
     void Start()
     {
-        Debug.Log($"Hello {Name}! Hey look! let's collect foods until you are full!"); //start text
+        Init( "Penguin" , "player" );
+
         originalSpeed = speed;
         UpdateCurrentSpeed();
         UpdateCurrentJumpPower();
-
-        Init( "Penguin" , "player" );
     }
 
     void Update() //check what player press

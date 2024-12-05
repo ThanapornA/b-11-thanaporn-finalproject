@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Pancake : Foods , ICollectable
 {
+    public bool hasPrinted = false;
+
     public void Start()
     {
-        Init("Pancake" , 100f , 10 );
+        Init("Pancake" , 10 );
         Print();
     }
 
     public override void Print()
     {
-        //Debug.Log($"{FoodPoints} is spawned!"); //info name points + boosts
+        if (!hasPrinted)
+        {
+            Debug.Log($"<color=green>special food</color> : {_name} is spawned! It's feed you 10%");
+            hasPrinted = true;
+        }
     }
 
     public void Collect(PlayerController player) //when player collect 

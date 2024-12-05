@@ -17,10 +17,9 @@ public abstract class Foods : MonoBehaviour //ABSTRACT Class
     public Transform Trans;
     public Spawner Spawner;
 
-    public void Init( string newName , float newFoodspeed , int pointWillGet )
+    public void Init( string newName , int pointWillGet )
     {
         _name = newName;
-        //foodSpeed = newFoodspeed;
         foodPoints = pointWillGet;
     }
 

@@ -6,13 +6,15 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [ SerializeField ] TextMeshProUGUI timerText;
-    private float remainingTime = 30.0f;
+    private float remainingTime = 60.0f;
     public float RemainingTime => remainingTime; //property
 
     public int minutes;
     public int seconds;
 
     public PlayerController player;
+
+    public GameOverScreen GameOverScreen;
 
     void Update()
     {
@@ -30,7 +32,10 @@ public class Timer : MonoBehaviour
     {
         if( minutes == 0.0f && seconds == 0.0f )
         {
-            timerText.text = "time's up! you lose";
+            timerText.text = "time's up!";
+            //set gameover screen active
+            GameOverScreen.TimesUpScreen();
+            GameOverScreen.gameObject.SetActive(true);
         }
     }
 
@@ -39,6 +44,9 @@ public class Timer : MonoBehaviour
         if( player.SatietyPoints >= 100 )
         {
             timerText.text = "you're full! you win";
+            //set gameover screen active
+            GameOverScreen.WinScreen();
+            GameOverScreen.gameObject.SetActive(true);
         }
     }
 }

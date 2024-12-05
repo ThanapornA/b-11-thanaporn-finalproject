@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TrapObject : Character
+public class Seal : Character
 {
     [ SerializeField ] Collider2D collider;
 
@@ -12,6 +12,7 @@ public class TrapObject : Character
     [ SerializeField ] Rigidbody2D rb;
 
     [ SerializeField ] TextMeshProUGUI triggeredText;
+    public GameOverScreen GameOverScreen;
 
     void Start()
     {
@@ -35,6 +36,9 @@ public class TrapObject : Character
         {
             Debug.Log("you triggered the seal and got eaten!");
             triggeredText.text = "you triggered the seal and got eaten!";
+            //set gameover screen active
+            GameOverScreen.TriggeredEneScreen();
+            GameOverScreen.gameObject.SetActive(true);
         }
     }
 

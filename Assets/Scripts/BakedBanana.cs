@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BakedBanana : Foods , ICollectable //INHERITANCE
 {
+    public bool hasPrinted = false;
+
     public void Start()
     {
-        Init("Baked Banana" , 100f , 3 );
+        Init("Baked Banana" , 3 );
         Print();
     }
 
     public override void Print()
     {
-        //Debug.Log($"{FoodPoints} is spawned!"); //info name points + boosts
+        if (!hasPrinted)
+        {
+            Debug.Log($"<color=red>bad food</color> : {_name} is spawned! It's lose you 3%");
+            hasPrinted = true;
+        }
     }
 
     public void Collect(PlayerController player) //when player collect 

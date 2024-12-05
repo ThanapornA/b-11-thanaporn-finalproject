@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BurnedToast : Foods , ICollectable //INHERITANCE
 {
+    public bool hasPrinted = false;
+
     public void Start()
     {
-        Init("Burned Toast" , 100f , 5 );
+        Init("Burned Toast" , 5 );
         Print();
     }
 
     public override void Print()
     {
-        //Debug.Log($"{FoodPoints} is spawned!"); //info name points + boosts
+        if (!hasPrinted)
+        {
+            Debug.Log($"<color=red>bad food</color> : {_name} is spawned! It's lose you 5%");
+            hasPrinted = true;
+        }
     }
 
     public void Collect(PlayerController player) //when player collect 

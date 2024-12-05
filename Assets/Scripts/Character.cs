@@ -23,6 +23,6 @@ public class Character : MonoBehaviour //this script used to define each charact
         name = newName;
         characterType = newCharacterType;
 
-        Debug.Log($"{name} is a {characterType}");
+        Debug.Log($"<color=white>{name} is a {characterType}</color>");
     }
 }
