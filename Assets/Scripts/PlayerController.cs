@@ -98,6 +98,11 @@ public class PlayerController : Character
         }
     }
 
+    public override void CharPrint()
+    {
+        Debug.Log($"<color=white>{Name} is a {CharacterType}</color>");
+    }
+
     //POLYMORPHISM(overload)
     public void ClassifyingFood( int foodPoints , float speedUp , float duration ) //SPEED special food : blueberry milk
     {

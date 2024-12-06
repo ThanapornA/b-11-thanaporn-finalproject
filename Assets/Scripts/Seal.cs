@@ -64,5 +64,9 @@ public class Seal : Character
         scale.x *= -1;
         transform.localScale = scale;
     }
-
+    
+    public override void CharPrint()
+    {
+        Debug.Log($"<color=white>{Name} is a {CharacterType}</color>");
+    }
 }
